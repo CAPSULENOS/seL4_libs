@@ -57,6 +57,7 @@ typedef struct utspace_interface {
     void (*free)(struct allocman *alloc, void *utspace, seL4_Word cookie, size_t size_bits);
     int (*add_uts)(struct allocman *alloc, void *utspace, size_t num, const cspacepath_t *uts, size_t *size_bits, uintptr_t *paddr, int utType);
     uintptr_t (*paddr)(void *utspace, seL4_Word cookie, size_t size_bits);
+    int (*add_node)(struct allocman *alloc, seL4_Word* node);//added by Peng Xie
     struct allocman_properties properties;
     void *utspace;
 }utspace_interface_t;

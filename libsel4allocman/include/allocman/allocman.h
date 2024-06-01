@@ -230,6 +230,8 @@ static inline cspacepath_t allocman_cspace_make_path(allocman_t *alloc, seL4_CPt
  */
 seL4_Word allocman_utspace_alloc_at(allocman_t *alloc, size_t size_bits, seL4_Word type, const cspacepath_t *path, uintptr_t paddr, bool canBeDev, int *_error);
 
+//added by Peng Xie
+int allocman_utspace_add_node(allocman_t *alloc, seL4_Word* node);
 /**
  * Allocates a portion of untyped memory, and retypes it into the desired object for you.
  *

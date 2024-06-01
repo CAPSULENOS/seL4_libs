@@ -142,6 +142,20 @@ static int am_vka_utspace_alloc_at (void *data, const cspacepath_t *dest, seL4_W
     return error;
 }
 
+//added by Peng Xie
+static int am_vka_utspace_add_node (void *data, seL4_Word * node)
+{
+    int error;
+
+    assert(data);
+    assert(node);
+
+    //printf("am_vka_utspace_add_node: is called !\n");
+
+    error=allocman_utspace_add_node((allocman_t *) data, node);
+    return error;
+}
+
 /**
  * Free a portion of an allocated untyped. Is the responsibility of the caller to
  * have already deleted the object (by deleting all capabilities) first
@@ -190,6 +204,7 @@ void allocman_make_vka(vka_t *vka, allocman_t *alloc)
     vka->utspace_alloc = &am_vka_utspace_alloc;
     vka->utspace_alloc_maybe_device = &am_vka_utspace_alloc_maybe_device;
     vka->utspace_alloc_at = &am_vka_utspace_alloc_at;
+    vka->utspace_add_node = &am_vka_utspace_add_node;//added by Peng Xie
     vka->cspace_free = &am_vka_cspace_free;
     vka->utspace_free = &am_vka_utspace_free;
     vka->utspace_paddr = &am_vka_utspace_paddr;

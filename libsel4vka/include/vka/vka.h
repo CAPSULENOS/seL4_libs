@@ -27,7 +27,7 @@
  * @return 0 on success
  */
 typedef int (*vka_cspace_alloc_fn)(void *data, seL4_CPtr *res);
-
+typedef int (*vka_utspace_add_node_fn)(void *data, seL4_Word *node);//added by Peng Xie
 /**
  * Convert an allocated cptr to a cspacepath, for use in
  * operations such as Untyped_Retype
@@ -131,6 +131,7 @@ typedef struct vka {
     vka_cspace_free_fn cspace_free;
     vka_utspace_free_fn utspace_free;
     vka_utspace_paddr_fn utspace_paddr;
+    vka_utspace_add_node_fn utspace_add_node;//added by Peng Xie
 } vka_t;
 
 static inline int vka_cspace_alloc(vka_t *vka, seL4_CPtr *res)

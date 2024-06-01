@@ -235,6 +235,25 @@ static struct utspace_split_node **find_head_for_paddr(struct utspace_split_node
     return NULL;
 }
 
+//added by Peng Xie
+int  _utspace_split_add_node(allocman_t *alloc, seL4_Word* device_node)
+{
+   int error=0;
+  //printf("_utspace_split_add_node: is called node is 0x%lx!\n", *device_node);
+
+   //allocman_t *alloc=(allocman_t *)vm->vka->data;
+
+    utspace_split_t *split = (utspace_split_t *)alloc->utspace.utspace;
+    struct utspace_split_node *node= (struct utspace_split_node *) (*device_node);
+    //struct utspace_split_node** head=split->&dev_heads[12];
+    //printf("_utspace_split_add_node: is called node paddr is 0x%lx!\n", node->paddr);
+    struct utspace_split_node** head=&(split->dev_heads[12]);
+
+     _insert_node(head, node);
+
+   return error;
+}
+
 seL4_Word _utspace_split_alloc(allocman_t *alloc, void *_split, size_t size_bits, seL4_Word type,
                                const cspacepath_t *slot, uintptr_t paddr, bool canBeDev, int *error)
 {

@@ -335,6 +335,13 @@ seL4_Word allocman_utspace_alloc_at(allocman_t *alloc, size_t size_bits, seL4_Wo
     return _allocman_utspace_alloc(alloc, size_bits, type, path, paddr, canBeDev, _error, 1);
 }
 
+//added by Peng Xie
+int allocman_utspace_add_node(allocman_t *alloc,seL4_Word* device_node)
+{
+   // printf("allocman_utspace_add_node: is called! \n");//added by Peng Xie
+    return alloc->utspace.add_node(alloc, device_node);
+}
+
 static int _refill_watermark(allocman_t *alloc)
 {
     int found_empty_pool;
